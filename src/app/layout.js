@@ -1,5 +1,9 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
 
 const inter = Inter({ subsets: ['latin'] })
 

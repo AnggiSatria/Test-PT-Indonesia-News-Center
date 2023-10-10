@@ -47,7 +47,7 @@ function Register() {
         Swal.fire("Register Success!", "success");
         //  window.localStorage.setItem(`token`, )
         dispatch(CHECK_AUTH(res?.data));
-        window.localStorage.setItem(`token`, res?.data);
+        window.localStorage.setItem(`token`, res?.data?.token);
 
         router.push(`/home`, { search: res?.data?.userId });
       })

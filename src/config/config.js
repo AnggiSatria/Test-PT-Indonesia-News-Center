@@ -1,7 +1,6 @@
 "use client";
 
-const token = sessionStorage.getItem("token");
-const token2 = localStorage.getItem("token");
+const token2 = window.localStorage.getItem("token");
 
 export const Config = {
   headers: {
@@ -22,7 +21,7 @@ export const Config2 = {
 
 export const Config3 = {
   headers: {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${token2}`,
     "content-type": "multipart/form-data",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",

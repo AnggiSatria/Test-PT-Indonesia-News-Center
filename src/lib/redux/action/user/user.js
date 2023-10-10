@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLogin: false,
-  token: "",
-  user: {},
+  data: {},
 };
 
 export const userSlice = createSlice({
@@ -14,8 +13,7 @@ export const userSlice = createSlice({
       return {
         ...state,
         isLogin: true,
-        token: sessionStorage.token || localStorage.token,
-        user: action.payload,
+        data: action.payload,
       };
     },
     LOGOUT: (state) => {
@@ -24,8 +22,7 @@ export const userSlice = createSlice({
       return {
         ...state,
         isLogin: false,
-        token: "",
-        user: "",
+        data: action.payload,
       };
     },
   },

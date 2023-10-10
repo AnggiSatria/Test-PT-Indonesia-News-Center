@@ -20,12 +20,12 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center bg-[#f3f3f3] justify-between p-[50px]">
-      <div className=" w-full flex flex-col md:flex-row">
-        <div className="w-[50%] h-full  flex justify-center items-center">
+      <div className=" w-full flex flex-col md:flex-row h-[500px] ">
+        <div className="w-[50%] h-full  flex justify-center ">
           <Image src={Logo} className="my-auto" />
         </div>
-        <div className="w-1/2 flex justify-center items-center">
-          <form className="md:w-[400px] flex flex-col rounded-md  gap-5 bg-white px-5 py-3">
+        <div className="w-1/2 flex justify-center h-full">
+          <form className="md:w-[400px] flex flex-col rounded-md gap-[20px] bg-white px-[20px] pb-[36px] pt-[12px]">
             <Menubar active={active} renderActive={renderActive} />
             <Mainview active={active} />
           </form>

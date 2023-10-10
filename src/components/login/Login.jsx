@@ -1,3 +1,4 @@
+import { CHECK_AUTH } from "@/lib/redux/action/user/user";
 import { LOGIN } from "@/lib/redux/service/users/login/login";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
@@ -9,8 +10,9 @@ import {
   InputLabel,
   TextField,
 } from "@mui/material";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
 function Login() {
@@ -36,24 +38,34 @@ function Login() {
     });
   };
 
+  const router = useRouter();
+
   const handleSubmit = (e) => {
     console.log(login);
 
     dispatch(LOGIN(login))
       .then((res) => {
-        return Swal.fire("Login Success!", "success");
+        console.log(res);
+        dispatch(CHECK_AUTH(res?.data));
+        window.localStorage.setItem(`token`, res?.data);
+
+        router.push(`/home`, { search: res?.data?.userId });
       })
       .catch((err) => {
-        return Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-        });
+        // Swal.fire({
+        //   icon: "error",
+        //   title: "Oops...",
+        //   text: "Something went wrong!",
+        // });
       });
   };
 
+  const Checkuser = useSelector((state) => {
+    return state.user;
+  });
+
   return (
-    <div className="w-full flex flex-col gap-[36px] h-full">
+    <div className="w-full flex flex-col gap-[36px]">
       <TextField
         name="email"
         value={login.email}

@@ -1,6 +1,6 @@
 import { Articles } from "@/lib/redux/service/articles/get/getArticles";
 import moment from "moment/moment";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function Header() {
@@ -13,15 +13,7 @@ function Header() {
   console.log(checkUser);
 
   useEffect(() => {
-    dispatch(
-      Articles({
-        headers: {
-          Authorization: `Bearer ${checkUser}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        },
-      })
-    );
+    dispatch(Articles());
   }, []);
 
   const GetArticlesData = useSelector((state) => {
@@ -29,6 +21,19 @@ function Header() {
   });
 
   console.log(GetArticlesData);
+
+  const [search, setSearch] = useState({
+    search: "",
+  });
+
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    dispatch(Articles(e.target.value));
+    // setSearch({
+    //   ...search,
+    //   [e.target.name]: e.target.value,
+    // });
+  };
 
   return (
     <div
@@ -54,6 +59,7 @@ function Header() {
             </svg>
           </div>
           <input
+            onChange={handleChange}
             type="text"
             placeholder="Search for news..."
             className="pl-16 pr-4 py-4 rounded-md shadow-md bg-white border-0 w-full outline-none"
